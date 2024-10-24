@@ -3,33 +3,27 @@
 Este projeto contém um script que monitora o status de um servidor Nginx, validando se o serviço está online ou offline e gerando arquivos de log com essas informações. Além disso, o script é configurado para ser executado automaticamente a cada 5 minutos via crontab.
 Pré-requisitos
 
-  Distribuição Linux (Debian/Ubuntu/CentOS ou derivadas).
+  Qulaquer Distribuição Linux .
   Permissões de superusuário (root) ou capacidade de usar sudo.
   Nginx instalado no sistema.
   Acesso ao terminal para configurar o cron.
 
-Instalação e Configuração
+# Instalação e Configuração
 Instalação do Nginx
 
-Caso o Nginx ainda não esteja instalado no seu sistema, siga os passos abaixo:
+Caso o Nginx ainda não esteja instalado no seu sistema, abra o terminal e siga os passos abaixo:
 
 Ubuntu/Debian:
-
-bash
 
 sudo apt update
 sudo apt install nginx
 
 CentOS/RHEL:
 
-bash
-
 sudo yum install epel-release
 sudo yum install nginx
 
 Após a instalação, verifique se o Nginx está rodando:
-
-bash
 
 sudo systemctl start nginx
 sudo systemctl status nginx
