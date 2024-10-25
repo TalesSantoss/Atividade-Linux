@@ -1,117 +1,43 @@
-# Projeto: Monitoramento de Servidor Nginx
+# Projeto: Instalação do linux Debian numa maquina
 
-Este projeto contém um script que monitora o status de um servidor Nginx, validando se o serviço está online ou offline e gerando arquivos de log com essas informações. Além disso, o script é configurado para ser executado automaticamente a cada 5 minutos via crontab.
-Pré-requisitos
+Este projeto contém um guia de instalação do Debian em uma maquina virtual.
+# 1. Pre-requisitos
+- Ultima versão do VirtualBox
+- ISO do Debian 12
+# 2. Instalação do VirtualBox
+- Baixe e instale o VirtualBox pelo site original, seguindo as instruções de instalação padrão.
+# 3. Configuração do VirtualBox
+1. Abra o VirtualBox e clique em novo para criar uma nova maquina virtual.
+2. No campo "Nome", insira o nome desejado para a maquina.
+3. No campo "Imagem ISO", selecione a ISO do Debian na pasta onde foi instalado
+# 4. Configuração do hardware virtual
+1. Em Memória RAM: Alocar pelo menos 2 GB de RAM (2048 MB), podendo aumentar o valor se necessário.
+2. Em Disco rígido: escolha "criar um disco rigido virtual agora".
+3. Em seguida selecione o formato "VDI" (VirtualBox Disk Image).
+4. Selecione a opção "Dinamicante Alocação", e use pelo menos 20 GB e armazenamento.
+# 5. Configuração do Debian
+1. Escolha o idioma preferido.
+2. Escolha a configuração correta para seu teclado.
+3. Em particionamento: Escolha "Assistido" - usar o disco inteiro.
+4. Configurar usuário e senha: Defina o usuário root (superusuário) e crie uma conta de usuário normal.
+# 6. Acessando o Debian
+1. Após instalado, você será direcionado até a pagina de login de usuário.
+2. Faça login com a conta configurada pelo usuário.
+# 7. Configurar a conexão a internet
+1. Feche a máquina virtual e abra as configurações
+2. Selecione "Expert", e vá até a seção de redes
+3. Habilite a placa de rede e na seção de "Conectado a", selecione "Placa em modo Bridge"
+4. Na seção "Nome", escolha o nome da placa e no "tipo de placa" selecione "Intel PRO/1000 MT Desktop (82540EM).
+5. Em "modo Promíscuo" selecione "Permitir tudo", e em "Endereço MAC", escreva o endereço MAC da sua rede e marque a caixa de "Cabo Conectado".
+# 8. Instalação dos pacotes necessários para se fazer um servidor
+1. Em seu terminal escreva "su" e insira sua senha
+2. Após isso escreva:
 
-  WSL com ubuntu.
-  Permissões de superusuário (root) ou capacidade de usar sudo.
-  Nginx instalado no sistema.
-  Acesso ao terminal para configurar o cron.
+       sudo apt update -y
+       sudo apt install nginx -y
+       sudo apt install git -y
+3. Agora você tem todos os pacotes necessários para subir um servidor Linux.
+       
 
-# Instalação e Configuração
 
-Instalação do WSL com ubuntu:
-
-    wsl --install ubuntu
-
-Instalação do Nginx
-
-Caso o Nginx ainda não esteja instalado no seu sistema, abra o terminal e siga os passos abaixo:
-
-Ubuntu/Debian:
-
-    sudo apt update
-    sudo apt install nginx
-
-CentOS/RHEL:
-
-    sudo yum install epel-release
-    sudo yum install nginx
-
-Após a instalação, verifique se o Nginx está rodando:
-
-    sudo systemctl start nginx
-    sudo systemctl status nginx
-
-Script de Monitoramento
-
-Crie um script bash chamado monitor_nginx.sh que irá verificar o status do Nginx e gerar os arquivos de log de acordo com o resultado:
-
-    bash
-
-    #!/bin/bash
-
-    # Diretório de saída dos arquivos de log
-    LOG_DIR="/caminho/para/diretorio/logs"
-    ONLINE_LOG="$LOG_DIR/nginx_online.log"
-    OFFLINE_LOG="$LOG_DIR/nginx_offline.log"
-
-    # Data e hora atuais
-    TIMESTAMP=$(date '+%Y-%m-%d %H:%M:%S')
-
-    # Verificando o status do serviço Nginx
-    if systemctl is-active --quiet nginx; then
-         STATUS="ONLINE"
-         echo "$TIMESTAMP - Nginx - Status: ONLINE - O serviço Nginx está rodando corretamente." >> $ONLINE_LOG
-    else
-        STATUS="OFFLINE"
-        echo "$TIMESTAMP - Nginx - Status: OFFLINE - O serviço Nginx não está rodando." >> $OFFLINE_LOG
-    fi
-
-Configurando permissões do script
-
-Garanta que o script tenha permissões de execução:
-
-    bash
-
-    chmod +x monitor_nginx.sh
-
-Configuração do Crontab
-
-Para automatizar a execução do script a cada 5 minutos, edite o arquivo de cron do sistema:
-
-    bash
-
-    crontab -e
-
-Adicione a seguinte linha no arquivo do cron para executar o script a cada 5 minutos:
-
-    bash
-
-    */5 * * * * /caminho/para/monitor_nginx.sh
-
-Isso fará com que o cron execute o script automaticamente a cada 5 minutos.
-Funcionamento do Script
-
-    O script verifica o status do serviço Nginx a cada 5 minutos.
-    Caso o serviço esteja online, um log será gerado no arquivo nginx_online.log no diretório definido.
-    Caso o serviço esteja offline, um log será gerado no arquivo nginx_offline.log.
-    Os logs incluem a data e hora da verificação, o nome do serviço e uma mensagem personalizada de acordo com o status do serviço.
-
-# Versionamento
-
-Este projeto utiliza Git para controle de versionamento. Certifique-se de realizar commits regulares conforme as mudanças são implementadas.
-
-Exemplo de comandos de versionamento:
-
-bash
-
-git init
-git add .
-git commit -m "Primeira versão do script de monitoramento"
-git remote add origin <URL_DO_REPOSITORIO>
-git push -u origin master
-
- # Teste
-
-E, por fim, para concluir que o servidor está rodando. Verifique seu ip com o comando
-
-ip addr show
-
-e após isso cole-o na URL do navegador de sua preferência.
-
-E pronto, seu servidor estará ativo.
-
-Autores
-
-    Tales
+ 
