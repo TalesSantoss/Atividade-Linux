@@ -29,15 +29,8 @@ Este projeto contém um guia de instalação do Debian em uma maquina virtual.
 3. Habilite a placa de rede e na seção de "Conectado a", selecione "Placa em modo Bridge"
 4. Na seção "Nome", escolha o nome da placa e no "tipo de placa" selecione "Intel PRO/1000 MT Desktop (82540EM).
 5. Em "modo Promíscuo" selecione "Permitir tudo", e em "Endereço MAC", escreva o endereço MAC da sua rede e marque a caixa de "Cabo Conectado".
-# 8. Instalação dos pacotes necessários para se fazer um servidor
-1. Em seu terminal escreva "su" e insira sua senha
-2. Após isso escreva:
-
-       sudo apt update -y
-       sudo apt install nginx -y
-       sudo apt install git -y
-3. Agora você tem todos os pacotes necessários para subir um servidor Linux.
-       
+# 8. Parabéns!!!
+1. Agora o Linux esta totalmente instalado e configurado na sua maquina virtual.
 
 
  
