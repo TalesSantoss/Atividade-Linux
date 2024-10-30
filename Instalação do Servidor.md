@@ -2,22 +2,22 @@
 # 1. Pré-requisitos
 - Windows Powershell
 - nginx instalado
-- git instalado
 # 2. Instalação do ubuntu e do nginx pelo powershell
-1. No Powershell, digite :
+1. No Powershell, digite isso para instalar o  :
 
        wsl --install ubuntu
-2. Insira um nome de usuário Unix
+2. Insira um nome de usuário Unix e sua senha de usuario
 3. Abra o ubuntu e digite o seguinte código para atualizar os pacotes, instalar o nginx e verificar se ele está ativo:
      
-       sudo apt update
+       sudo apt update -y
+       sudo apt upgrade -y
        sudo apt install nginx
        sudo systemctl status nginx
 # 3. Criação do script do servidor
 1. Agora faça um diretorio para o script e entre no mesmo:
 
-       mkdir servidor_linux
-       cd servidor_linux
+       mkdir script_linux
+       cd script_linux
 2.dentro desse diretório, instale o nano se ja não estiver instalado e crie um arquivo "verificar_nginx.sh":
 
        sudo apt install nano
@@ -38,30 +38,20 @@
            echo "$DATA_HORA - $SERVICO - OFFLINE - O serviço está parado." >> $OFFLINE
        fi
 4. Após isso saia do nano com CTRL-O + Enter + CTRL-X
-5. No terminal, execute o comando:
+5. No terminal, execute o comando para dar permissões:
 
        chmod +x verificar_nginx.sh
-6. Após isso:
+6. Após isso, abra o arquivo crontab para fazer um cron job:
 
        crontab -e
 
-7. Na ultima linha desse arquivo escreva:
+7. Na ultima linha desse arquivo escreva isso para executar a tarefa a cada 5 minutos:
 
-       /5 * * * /home/usuario/nomedapasta/verificar_nginx.sh
-# 4. Configuração do GIT
-1.Insira esse código: 
-            
-        
-        git config --global user.email "exemplo@gmail.com"
-        git config --global user.name "nomegit"
-        git config --global --list
-        git commit -m "Versão inicial"
-        ./verificar_nginx.sh
+       */5 * * * * /home/usuario/nomedapasta/verificar_nginx.sh
 # 5. Verificação
-1. E por ultimo, para verificar se tudo está funcionando corretamente, execute o comando:
+1. E por ultimo, para verificar se tudo está funcionando corretamente, execute o script:
 
-       grep CRON /var/log/syslog
-       git log
+       ./verificar_nginx.sh
 2. Pronto, agora você tem um servidor ubuntu finalizado e com varias funções.
 
        
