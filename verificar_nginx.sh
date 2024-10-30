@@ -3,7 +3,7 @@
 # Variáveis
 DATA_HORA=$(date '+%Y-%m-%d %H:%M:%S')
 SERVICO="Nginx"
-DIRETORIO="./"
+DIRETORIO="Local de criação do log"
 ONLINE="${DIRETORIO}/online.log"
 OFFLINE="${DIRETORIO}/offline.log"
 
