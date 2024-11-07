@@ -12,7 +12,7 @@ STATUS=$(systemctl is-active nginx)
 
 # Condição para verificar se o Nginx está online
 if [ "$STATUS" = "active" ]; then
-    echo "$DATA_HORA - $SERVICO - ONLINE - O serviço está rodando." >> $ONLINE
+    echo "$DATA_HORA - $SERVICO - O serviço está Online." >> $ONLINE
 else
-    echo "$DATA_HORA - $SERVICO - OFFLINE - O serviço está parado." >> $OFFLINE
+    echo "$DATA_HORA - $SERVICO - O serviço está Offline." >> $OFFLINE
 fi
